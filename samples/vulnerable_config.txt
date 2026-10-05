@@ -1,0 +1,35 @@
+hostname BRANCH-SW1
+service password-encryption
+enable password 7 030752180500
+ip http server
+ip ssh version 1
+snmp-server community public RO
+!
+interface GigabitEthernet0/1
+ description USER-DESK-01
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+!
+interface GigabitEthernet0/2
+ description USER-DESK-02
+ switchport mode access
+ switchport access vlan 10
+!
+interface GigabitEthernet0/24
+ description UPLINK
+ switchport mode trunk
+ switchport trunk native vlan 1
+!
+line console 0
+ password 7 104D000A0618
+ login
+!
+line vty 0 4
+ password 7 02050D480809
+ login
+ transport input telnet ssh
+!
+line vty 5 15
+ login local
+ transport input ssh

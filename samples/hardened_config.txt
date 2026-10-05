@@ -1,0 +1,26 @@
+hostname BRANCH-SW2
+no ip http server
+ip http secure-server
+ip ssh version 2
+snmp-server community BranchReadOnly-92 RO
+!
+interface GigabitEthernet0/1
+ description USER-DESK-01
+ switchport mode access
+ switchport access vlan 10
+ switchport port-security
+ switchport port-security maximum 2
+ spanning-tree portfast
+!
+interface GigabitEthernet0/24
+ description UPLINK
+ switchport mode trunk
+ switchport trunk native vlan 999
+!
+ip access-list standard MGMT-SOURCES
+ permit 10.20.30.0 0.0.0.255
+!
+line vty 0 4
+ login local
+ transport input ssh
+ access-class MGMT-SOURCES in
