@@ -85,6 +85,10 @@ python -m unittest discover -s tests
 
 ## Example output
 
+Below is an example report generated from the included vulnerable Cisco configuration.
+
+![Cisco Config Auditor sample report](screenshots/audit-report.png)
+
 For the included vulnerable sample, the tool should identify issues such as:
 
 - Telnet enabled
